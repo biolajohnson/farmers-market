@@ -21,6 +21,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
   const authLink = (
     <ul>
       <li>
+        <Link to="/dashboard">Dashboard</Link>
+      </li>
+      <li>
         <a onClick={logoutUser} href="/login">
           Logout
         </a>
@@ -30,9 +33,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutUser }) => {
   return (
     <nav className="navbar bg-dark">
       <h1>
-        <Link to="/">
-          <i className="fas fa-code"></i> The Farmers market
-        </Link>
+        <Link to="/">The Farmers market</Link>
       </h1>
       {!loading && (
         <Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>

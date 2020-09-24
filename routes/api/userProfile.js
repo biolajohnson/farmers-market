@@ -49,7 +49,7 @@ router.get("/me", auth, async (req, res) => {
       user: req.user.id,
     }).populate("user", ["name", "avatar"]);
     if (!profile) {
-      res.status(400).json({ message: "No profile for this user" });
+      return res.status(400).json({ message: "No profile for this user" });
     }
     res.json(profile);
   } catch (e) {

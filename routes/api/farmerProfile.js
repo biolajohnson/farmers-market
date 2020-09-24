@@ -46,9 +46,9 @@ router.post(
     if (skills) profileFields.skills = skills;
     if (company) profileFields.company = company;
     if (produce) {
-      profileFields.produce = produce
-        .split(",")
-        .map((produce) => produce.trim());
+      profileFields.produce = produce.includes(",")
+        ? produce.split(",").map((produce) => produce.trim())
+        : produce;
     }
     //build social fields
 
@@ -87,7 +87,9 @@ router.get("/me", auth, async (req, res) => {
       user: req.user.id,
     }).populate("user", ["name", "avatar"]);
     if (!profile) {
-      res.status(400).json({ message: "Theres no profile for this user" });
+      return res
+        .status(400)
+        .json({ message: "Theres no profile for this user" });
     }
     res.json(profile);
   } catch (e) {

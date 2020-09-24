@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const farmerProfileSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
   company: {
